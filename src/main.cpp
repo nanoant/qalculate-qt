@@ -178,7 +178,9 @@ int main(int argc, char **argv) {
 		}
 	}
 
+#ifndef Q_OS_MACOS
 	app.setWindowIcon(LOAD_APP_ICON("qalculate-qt"));
+#endif
 
 	new Calculator(settings->ignore_locale);
 

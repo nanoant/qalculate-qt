@@ -120,11 +120,17 @@ unix:!equals(COMPILE_RESOURCES,"yes"):!android:!macx {
 } else {
 	RESOURCES = icons.qrc flags.qrc translations.qrc
 	target.path = $$PREFIX/bin
-	desktop.files = data/io.github.Qalculate.qalculate-qt.desktop
-	desktop.path = $$DESKTOP_DIR
-	appicon64.files = data/64/qalculate-qt.png
-	appicon64.path = $$DESKTOP_ICON_DIR/hicolor/64x64/apps
-	INSTALLS += target desktop appicon64
+	macx {
+		ICON = data/Qalculate.icns
+		QMAKE_APPLICATION_BUNDLE_NAME = Qalculate
+		INSTALLS += target
+	} else {
+		desktop.files = data/io.github.Qalculate.qalculate-qt.desktop
+		desktop.path = $$DESKTOP_DIR
+		appicon64.files = data/64/qalculate-qt.png
+		appicon64.path = $$DESKTOP_ICON_DIR/hicolor/64x64/apps
+		INSTALLS += target desktop appicon64
+	}
 }
 
 unix:!android:!macx {

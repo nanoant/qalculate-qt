@@ -319,6 +319,9 @@ class QalculateTableWidget : public QTableWidget {
 	}
 
 QalculateWindow::QalculateWindow() : QMainWindow() {
+#ifdef Q_OS_MACOS
+	setUnifiedTitleAndToolBarOnMac(true);
+#endif
 
 	QWidget *w_top = new QWidget(this);
 	setCentralWidget(w_top);
@@ -904,6 +907,14 @@ QalculateWindow::QalculateWindow() : QMainWindow() {
 
 }
 QalculateWindow::~QalculateWindow() {}
+
+void QalculateWindow::setWindowTitle(const QString &title) {
+#ifdef Q_OS_MACOS
+	QMainWindow::setWindowTitle(title.isEmpty() ? "Qalculate!" : title);
+#else
+	QMainWindow::setWindowTitle(title);
+#endif
+}
 
 void QalculateWindow::loadShortcuts() {
 	if(plotAction_t) plotAction_t->setToolTip(tr("Plot Functions/Data"));

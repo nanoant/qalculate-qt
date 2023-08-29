@@ -65,6 +65,7 @@ class QalculateWindow : public QMainWindow {
 		QalculateWindow();
 		virtual ~QalculateWindow();
 
+		void setWindowTitle(const QString &title);
 		void setCommandLineParser(QCommandLineParser*);
 		bool displayMessages();
 		bool updateWindowTitle(const QString &str = QString(), bool is_result = false, bool type_change = false);
